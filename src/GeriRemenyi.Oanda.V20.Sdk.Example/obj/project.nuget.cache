@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Hm92J1P5nQyIXuFM1fQEx7NAGxfdlfIKiMLKmoSMyxaFRqp2/Q0WW1jAOPl3PJimd84qgrqhOMWXBw29LkB6uw==",
+  "success": true,
+  "projectFilePath": "G:\\Geri\\Development\\forex-miner\\oanda-dotnet-sdk\\src\\GeriRemenyi.Oanda.V20.Sdk.Example\\GeriRemenyi.Oanda.V20.Sdk.Example.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\geri\\.nuget\\packages\\geriremenyi.oanda.v20.client\\0.0.1\\geriremenyi.oanda.v20.client.0.0.1.nupkg.sha512",
+    "C:\\Users\\geri\\.nuget\\packages\\jsonsubtypes\\1.5.2\\jsonsubtypes.1.5.2.nupkg.sha512",
+    "C:\\Users\\geri\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
+    "C:\\Users\\geri\\.nuget\\packages\\restsharp\\106.10.1\\restsharp.106.10.1.nupkg.sha512",
+    "C:\\Users\\geri\\.nuget\\packages\\system.componentmodel.annotations\\4.5.0\\system.componentmodel.annotations.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

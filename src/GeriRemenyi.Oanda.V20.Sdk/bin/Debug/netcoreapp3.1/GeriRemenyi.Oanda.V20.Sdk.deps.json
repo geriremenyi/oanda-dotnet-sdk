@@ -1,0 +1,103 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "GeriRemenyi.Oanda.V20.Sdk/1.0.0": {
+        "dependencies": {
+          "GeriRemenyi.Oanda.V20.Client": "0.0.1"
+        },
+        "runtime": {
+          "GeriRemenyi.Oanda.V20.Sdk.dll": {}
+        }
+      },
+      "GeriRemenyi.Oanda.V20.Client/0.0.1": {
+        "dependencies": {
+          "JsonSubTypes": "1.5.2",
+          "Newtonsoft.Json": "12.0.1",
+          "RestSharp": "106.10.1",
+          "System.ComponentModel.Annotations": "4.5.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/GeriRemenyi.Oanda.V20.Client.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "JsonSubTypes/1.5.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/JsonSubTypes.dll": {
+            "assemblyVersion": "1.5.2.0",
+            "fileVersion": "1.5.2.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
+          }
+        }
+      },
+      "RestSharp/106.10.1": {
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.dll": {
+            "assemblyVersion": "106.0.0.0",
+            "fileVersion": "106.10.1.0"
+          }
+        }
+      },
+      "System.ComponentModel.Annotations/4.5.0": {}
+    }
+  },
+  "libraries": {
+    "GeriRemenyi.Oanda.V20.Sdk/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GeriRemenyi.Oanda.V20.Client/0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2h6tgevcgIylTyc+9O/uvNCTaJ/J0pL9CpFw+6BNpBrAqhqsZXM8XFNnY62VSovbZrVr+BKyTpFt81ZrboqSBw==",
+      "path": "geriremenyi.oanda.v20.client/0.0.1",
+      "hashPath": "geriremenyi.oanda.v20.client.0.0.1.nupkg.sha512"
+    },
+    "JsonSubTypes/1.5.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Lu1fbpVYMDl45cz8Y0cH7MTjIN0dDhjg2srkbIJ7fjHvGepfzgKCf7WC5qp2vCxVZfNDeAcS1YAJZELhUFVPsw==",
+      "path": "jsonsubtypes/1.5.2",
+      "hashPath": "jsonsubtypes.1.5.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pBR3wCgYWZGiaZDYP+HHYnalVnPJlpP1q55qvVb+adrDHmFMDc1NAKio61xTwftK3Pw5h7TZJPJEEVMd6ty8rg==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
+    },
+    "RestSharp/106.10.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MhR4w8LbArVaRA5T/oAR3ZnF852QXtDXRBO84GsvyYzsm7FsjXHJ+JaM8x/nR/B/OCB1WbolGH7hqMT1GZpNJw==",
+      "path": "restsharp/106.10.1",
+      "hashPath": "restsharp.106.10.1.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UxYQ3FGUOtzJ7LfSdnYSFd7+oEv6M8NgUatatIN2HxNtDdlcvFAf+VIq4Of9cDMJEJC0aSRv/x898RYhB4Yppg==",
+      "path": "system.componentmodel.annotations/4.5.0",
+      "hashPath": "system.componentmodel.annotations.4.5.0.nupkg.sha512"
+    }
+  }
+}
