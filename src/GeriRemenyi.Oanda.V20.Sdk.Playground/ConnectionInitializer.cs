@@ -1,12 +1,36 @@
 ﻿
-namespace GeriRemenyi.Oanda.V20.Sdk.Example
+namespace GeriRemenyi.Oanda.V20.Sdk.Playground
 {
+    using GeriRemenyi.Oanda.V20.Sdk.Exceptions;
     using GeriRemenyi.Oanda.V20.Sdk.Utilities;
     using System;
     using System.Linq;
 
     public static class ConnectionInitializer
     {
+        public static ApiConnection InitializeApiConnection()
+        {
+            ApiConnection connection = null;
+
+            while (connection == null)
+            {
+                try
+                {
+                    var server = ServerSelector();
+                    var token = InputToken();
+                    connection = new ApiConnection(server, token);
+                }
+                catch (ApiConnectionException ace)
+                {
+                    Console.WriteLine($"Failed to initialize connection. Exception message: {ace.Message}. Please double check that the server and the access token are correct.");
+                    Console.WriteLine("");
+                    Console.WriteLine("");
+                }
+            }
+
+            return connection;
+        }
+
         public static OandaServer ServerSelector()
         {
             // Print out available servers

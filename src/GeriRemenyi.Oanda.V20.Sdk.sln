@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeriRemenyi.Oanda.V20.Sdk", "GeriRemenyi.Oanda.V20.Sdk\GeriRemenyi.Oanda.V20.Sdk.csproj", "{E22CF218-559A-49D7-BC80-D68AA592FA4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeriRemenyi.Oanda.V20.Sdk.Example", "GeriRemenyi.Oanda.V20.Sdk.Example\GeriRemenyi.Oanda.V20.Sdk.Example.csproj", "{A002E45A-0D93-4E30-A97A-58A0B960B67B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeriRemenyi.Oanda.V20.Sdk.Playground", "GeriRemenyi.Oanda.V20.Sdk.Playground\GeriRemenyi.Oanda.V20.Sdk.Playground.csproj", "{A002E45A-0D93-4E30-A97A-58A0B960B67B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

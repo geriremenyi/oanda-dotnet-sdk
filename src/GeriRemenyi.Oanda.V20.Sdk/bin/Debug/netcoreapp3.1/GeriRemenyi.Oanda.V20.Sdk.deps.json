@@ -8,13 +8,13 @@
     ".NETCoreApp,Version=v3.1": {
       "GeriRemenyi.Oanda.V20.Sdk/1.0.0": {
         "dependencies": {
-          "GeriRemenyi.Oanda.V20.Client": "0.0.1"
+          "GeriRemenyi.Oanda.V20.Client": "0.0.2"
         },
         "runtime": {
           "GeriRemenyi.Oanda.V20.Sdk.dll": {}
         }
       },
-      "GeriRemenyi.Oanda.V20.Client/0.0.1": {
+      "GeriRemenyi.Oanda.V20.Client/0.0.2": {
         "dependencies": {
           "JsonSubTypes": "1.5.2",
           "Newtonsoft.Json": "12.0.1",
@@ -64,12 +64,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "GeriRemenyi.Oanda.V20.Client/0.0.1": {
+    "GeriRemenyi.Oanda.V20.Client/0.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2h6tgevcgIylTyc+9O/uvNCTaJ/J0pL9CpFw+6BNpBrAqhqsZXM8XFNnY62VSovbZrVr+BKyTpFt81ZrboqSBw==",
-      "path": "geriremenyi.oanda.v20.client/0.0.1",
-      "hashPath": "geriremenyi.oanda.v20.client.0.0.1.nupkg.sha512"
+      "sha512": "sha512-U404aNYY+lfgescwr8M6fbGWjU/iQHbS9Z92/c0vDHEssCZfhY8Yx9U83sGQneerbrygnzRneRQ0GDIgfh3boQ==",
+      "path": "geriremenyi.oanda.v20.client/0.0.2",
+      "hashPath": "geriremenyi.oanda.v20.client.0.0.2.nupkg.sha512"
     },
     "JsonSubTypes/1.5.2": {
       "type": "package",

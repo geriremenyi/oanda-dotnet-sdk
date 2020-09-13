@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "GeriRemenyi.Oanda.V20.Client/0.0.1": {
+      "GeriRemenyi.Oanda.V20.Client/0.0.2": {
         "type": "package",
         "dependencies": {
           "JsonSubTypes": "1.5.2",
@@ -59,14 +59,14 @@
     }
   },
   "libraries": {
-    "GeriRemenyi.Oanda.V20.Client/0.0.1": {
-      "sha512": "2h6tgevcgIylTyc+9O/uvNCTaJ/J0pL9CpFw+6BNpBrAqhqsZXM8XFNnY62VSovbZrVr+BKyTpFt81ZrboqSBw==",
+    "GeriRemenyi.Oanda.V20.Client/0.0.2": {
+      "sha512": "U404aNYY+lfgescwr8M6fbGWjU/iQHbS9Z92/c0vDHEssCZfhY8Yx9U83sGQneerbrygnzRneRQ0GDIgfh3boQ==",
       "type": "package",
-      "path": "geriremenyi.oanda.v20.client/0.0.1",
+      "path": "geriremenyi.oanda.v20.client/0.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "geriremenyi.oanda.v20.client.0.0.1.nupkg.sha512",
+        "geriremenyi.oanda.v20.client.0.0.2.nupkg.sha512",
         "geriremenyi.oanda.v20.client.nuspec",
         "lib/netcoreapp3.1/GeriRemenyi.Oanda.V20.Client.dll",
         "lib/netcoreapp3.1/GeriRemenyi.Oanda.V20.Client.xml"
@@ -239,7 +239,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "GeriRemenyi.Oanda.V20.Client >= 0.0.1"
+      "GeriRemenyi.Oanda.V20.Client >= 0.0.2"
     ]
   },
   "packageFolders": {
@@ -281,7 +281,7 @@
         "dependencies": {
           "GeriRemenyi.Oanda.V20.Client": {
             "target": "Package",
-            "version": "[0.0.1, )"
+            "version": "[0.0.2, )"
           }
         },
         "imports": [

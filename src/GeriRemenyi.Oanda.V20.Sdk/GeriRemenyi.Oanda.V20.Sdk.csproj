@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GeriRemenyi.Oanda.V20.Client" Version="0.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Account\" />
+    <PackageReference Include="GeriRemenyi.Oanda.V20.Client" Version="0.0.2" />
   </ItemGroup>
 
 </Project>
