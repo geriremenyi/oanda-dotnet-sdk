@@ -1,9 +1,0 @@
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\bin\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.deps.json
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\bin\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.dll
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\obj\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.csprojAssemblyReference.cache
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\obj\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.AssemblyInfoInputs.cache
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\obj\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.AssemblyInfo.cs
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\bin\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.pdb
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\obj\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.csproj.CoreCompileInputs.cache
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\obj\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.dll
-G:\Geri\Development\forex-miner\oanda-dotnet-sdk\src\GeriRemenyi.Oanda.V20.Sdk\obj\Debug\netcoreapp3.1\GeriRemenyi.Oanda.V20.Sdk.pdb
