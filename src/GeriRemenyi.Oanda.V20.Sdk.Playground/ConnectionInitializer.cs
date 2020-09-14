@@ -1,14 +1,15 @@
 ﻿
 namespace GeriRemenyi.Oanda.V20.Sdk.Playground
 {
-    using GeriRemenyi.Oanda.V20.Sdk.Exceptions;
+    using GeriRemenyi.Oanda.V20.Client.Client;
     using GeriRemenyi.Oanda.V20.Sdk.Utilities;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public static class ConnectionInitializer
     {
-        public static ApiConnection InitializeApiConnection()
+        public static async Task<ApiConnection> InitializeApiConnection()
         {
             ApiConnection connection = null;
 
@@ -16,14 +17,18 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
             {
                 try
                 {
+                    Console.WriteLine("==========================");
+                    Console.WriteLine("= Connect to OANDA's API =");
+                    Console.WriteLine("==========================");
+                    Console.WriteLine("");
                     var server = ServerSelector();
                     var token = InputToken();
                     connection = new ApiConnection(server, token);
+                    await connection.Test();
                 }
-                catch (ApiConnectionException ace)
+                catch (ApiException ae)
                 {
-                    Console.WriteLine($"Failed to initialize connection. Exception message: {ace.Message}. Please double check that the server and the access token are correct.");
-                    Console.WriteLine("");
+                    Console.WriteLine($"Failed to initialize connection. Exception message: {ae.Message}. Please double check that the server and the access token are correct.");
                     Console.WriteLine("");
                 }
             }
@@ -35,7 +40,7 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
         {
             // Print out available servers
             Console.WriteLine("Please select the OANDA server you want to connect to");
-            Console.WriteLine("======================================================");
+            Console.WriteLine("------------------------------------------------------");
             var availableServers = Enum.GetValues(typeof(OandaServer)).Cast<OandaServer>().ToList();
             foreach (var server in availableServers.Select((name, index) => new { index = index + 1, name }))
             {
@@ -45,8 +50,7 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
             Console.Write("Please input the number of the desired server: ");
 
             // Let the user select
-            var selectedServer = TryToParseNumericAnswer(Console.ReadLine(), 1, Convert.ToUInt32(availableServers.Count));
-            Console.WriteLine("");
+            var selectedServer = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1, Convert.ToUInt32(availableServers.Count));
             Console.WriteLine("");
             return availableServers.ElementAt(selectedServer - 1);
         }
@@ -55,44 +59,13 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
         {
             // Print out help text
             Console.WriteLine("Please input your access token for the respective environment");
-            Console.WriteLine("==============================================================");
-            Console.WriteLine(
-                "If you don't know what is it, please visit and gather more info on the following link: " +
-                "https://developer.oanda.com/rest-live-v20/authentication/#obtaining-a-personal-access-token"
-            );
-            Console.WriteLine("");
-            Console.Write("Please input the token: ");
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.Write("Token: ");
 
             // Let the user input the token
             var token = Console.ReadLine();
             Console.WriteLine("");
-            Console.WriteLine("");
             return token;
-        }
-
-        private static int TryToParseNumericAnswer(string answer, uint minValue, uint maxValue)
-        {
-            var numericAnswer = -1;
-
-            while (numericAnswer < 0) 
-            {
-                try
-                {
-                    numericAnswer = int.Parse(answer);
-                    if (numericAnswer < minValue || numericAnswer > maxValue)
-                    {
-                        throw new ArgumentException("The answer is out of range");
-                    }
-                }
-                catch
-                {
-                    Console.Write("Invalid selection. Please try again: ");
-                    answer = Console.ReadLine();
-                    numericAnswer = -1;
-                }
-            }
-
-            return numericAnswer;
         }
     }
 }

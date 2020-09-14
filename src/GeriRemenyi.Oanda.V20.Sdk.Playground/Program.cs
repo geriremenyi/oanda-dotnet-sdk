@@ -8,12 +8,11 @@
     {
         static void Main(string[] args)
         {
-            // Init connection
-            var connection = ConnectionInitializer.InitializeApiConnection();
+            // Initialize connection
+            var connection = ConnectionInitializer.InitializeApiConnection().GetAwaiter().GetResult();
 
-            // Get candles
-            var candles = connection.GetInstrument(InstrumentName.EUR_USD).GetCandles(CandlestickGranularity.D, DateTime.Now.AddDays(-14), DateTime.Now).GetAwaiter().GetResult();
-            Console.WriteLine(JsonSerializer.Serialize(candles.Candles));
+            // Let the user play around
+            MainMenu.InitializeMainMenu(connection).GetAwaiter().GetResult();
         }
     }
 }

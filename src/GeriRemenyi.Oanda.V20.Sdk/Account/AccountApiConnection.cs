@@ -21,12 +21,9 @@
             return (await _accountApi.GetAccountsAsync()).Accounts;
         }
 
-        public List<AccountProperties> Accounts 
+        public Account GetAccount(string accountId)
         {
-            get 
-            {
-                return _accountApi.GetAccounts().Accounts;
-            }
+            return new Account(_accountApi, accountId, DateTimeFormat);
         }
     }
 }
