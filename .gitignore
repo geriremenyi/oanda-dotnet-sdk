@@ -3,9 +3,9 @@
 *.user
 *.sln.docstates
 ./nuget
+**/.vs
 
 # Build results
-
 [Dd]ebug/
 [Rr]elease/
 x64/
