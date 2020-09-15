@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>GeriRemenyi.Oanda.V20.Sdk</AssemblyName>
+    <PackageId>GeriRemenyi.Oanda.V20.Sdk</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>geriremenyi</Authors>
+    <Company>geriremenyi.com</Company>
+    <AssemblyTitle>OANDA REST API V20 SDK</AssemblyTitle>
+    <Description>A client SDK for OANDA&#39;s REST API (V20)</Description>
+    <Copyright>No Copyright</Copyright>
+    <RootNamespace>GeriRemenyi.Oanda.V20.Client</RootNamespace>
+    <Version>0.0.2</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\GeriRemenyi.Oanda.V20.Sdk.xml</DocumentationFile>
+    <RepositoryUrl>https://github.com/geriremenyi/oanda-dotnet-sdk.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>OANDA; OANDA V20; OANDA API; OANDA REST API; OANDA REST V20 API; Oanda</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GeriRemenyi.Oanda.V20.Client" Version="0.0.2" />
+  </ItemGroup>
+
+</Project>
