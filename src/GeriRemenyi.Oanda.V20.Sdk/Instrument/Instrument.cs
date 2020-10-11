@@ -54,6 +54,5 @@
 
             return string.Join("", pricingComponents.Select(pc => pc.ToPrice()));
         }
-
     }
 }
