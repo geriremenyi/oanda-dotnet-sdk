@@ -13,18 +13,19 @@
     <Authors>geriremenyi</Authors>
     <Company>geriremenyi.com</Company>
     <AssemblyTitle>OANDA REST API V20 SDK</AssemblyTitle>
-    <Description>A client SDK for OANDA&#39;s REST API (V20)</Description>
+    <Description>A client SDK for OANDA's REST API (V20)</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>GeriRemenyi.Oanda.V20.Client</RootNamespace>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\GeriRemenyi.Oanda.V20.Sdk.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/geriremenyi/oanda-dotnet-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>OANDA; OANDA V20; OANDA API; OANDA REST API; OANDA REST V20 API; Oanda</PackageTags>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GeriRemenyi.Oanda.V20.Client" Version="0.0.2" />
+    <PackageReference Include="GeriRemenyi.Oanda.V20.Client" Version="0.0.3" />
   </ItemGroup>
 
 </Project>
