@@ -23,7 +23,7 @@
 
         public Account GetAccount(string accountId)
         {
-            return new Account(_accountApi, accountId, DateTimeFormat);
+            return new Account(_accountApi, Configuration, accountId, DateTimeFormat);
         }
     }
 }

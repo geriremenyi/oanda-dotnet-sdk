@@ -42,3 +42,12 @@ Pull requests and any kind of contribution are welcome. For major changes, pleas
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Liability
+CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage.
+Around 70% of retail investor accounts lose money when trading CFDs with OANDA.
+You should consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.
+
+This is a project built for fun so by no means I'm held responsible for any of your financial losses even if it was caused by the software
+malfunctioning. Please use this library with caution and ALWAYS test your algo trading strategies on a practice/demo account. Only use it on a live
+account if you have learnt that there are nog bugs present at all.

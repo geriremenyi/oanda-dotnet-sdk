@@ -46,7 +46,7 @@
             Console.WriteLine("======================");
             Console.WriteLine("");
 
-            // Let the user select from accounts
+            // Let the user select from instruments
             Console.WriteLine("Please select the instrument");
             Console.WriteLine("-----------------------------");
             var availableInstruments = Enum.GetValues(typeof(InstrumentName)).Cast<InstrumentName>().ToList();
@@ -82,7 +82,7 @@
             // Load details for the instrument
             var candles = await connection
                 .GetInstrument(availableInstruments.ElementAt(selectedInstrument - 1))
-                .GetCandles(availableGranularities.ElementAt(selectedGranularity - 1), DateTime.Now.AddDays(selectedDays * -2), DateTime.Now.AddDays(-1));
+                .GetCandles(availableGranularities.ElementAt(selectedGranularity - 1), DateTimeOffset.Now.AddDays(selectedDays * -2), DateTimeOffset.Now.AddDays(-1));
             Console.WriteLine("Candles");
             Console.WriteLine("---------------------------------");
             Console.WriteLine("");

@@ -25,19 +25,46 @@
 
         public async Task<CandlesResponse> GetCandles(
             CandlestickGranularity granularity, 
-            DateTime from, 
-            DateTime to, 
+            DateTimeOffset from, 
+            DateTimeOffset to, 
             IEnumerable<PricingComponent>? pricingComponents = null
         )
         {
-            // TODO replace granularity to enum when fix is in
-            return await _instrumentApi.GetInstrumentCandlesAsync(
-                instrument: _instrumentName,
-                granularity: granularity,
-                price: ResolvePricingComponents(pricingComponents),
-                from: from.ToOandaDateTime(_dateTimeFormat),
-                to: to.ToOandaDateTime(_dateTimeFormat)
-            );
+            if (granularity.AreMultipleQueriesRequired(from, to))
+            {
+                var candlesRange = granularity.ExplodeToMultipleCandleRanges(from, to);
+                var candleResponses = new List<CandlesResponse>();
+
+                foreach (var candleFromToRange in candlesRange)
+                {
+                    candleResponses.Add(
+                        await _instrumentApi.GetInstrumentCandlesAsync(
+                            instrument: _instrumentName,
+                            granularity: granularity,
+                            price: ResolvePricingComponents(pricingComponents),
+                            from: candleFromToRange.From.ToOandaDateTime(_dateTimeFormat),
+                            to: candleFromToRange.To.ToOandaDateTime(_dateTimeFormat)
+                        )
+                    );
+                }
+
+                return new CandlesResponse() 
+                { 
+                    Instrument = _instrumentName,
+                    Granularity = granularity,
+                    Candles = candleResponses.SelectMany(cr => cr.Candles).ToList()
+                };
+            }
+            else
+            {
+                return await _instrumentApi.GetInstrumentCandlesAsync(
+                    instrument: _instrumentName,
+                    granularity: granularity,
+                    price: ResolvePricingComponents(pricingComponents),
+                    from: from.ToOandaDateTime(_dateTimeFormat),
+                    to: to.ToOandaDateTime(_dateTimeFormat)
+                );
+            }
         }
 
         private string ResolvePricingComponents(IEnumerable<PricingComponent>? pricingComponents)
