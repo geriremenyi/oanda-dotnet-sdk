@@ -25,7 +25,7 @@
                 // Wait for the user selection
                 Console.WriteLine("");
                 Console.Write("Please input the menupoint: ");
-                selection = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 0, 2);
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, 2);
 
                 // Show submenu details based on the selection
                 switch (selection)
@@ -87,7 +87,7 @@
                 // Wait for user selection
                 Console.WriteLine("");
                 Console.Write("Please select an account: ");
-                selection = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 0, Convert.ToUInt32(accounts.Count));
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, Convert.ToInt32(accounts.Count));
 
                 // Handle selection
                 if (selection != 0) 
@@ -115,7 +115,7 @@
                 // Wait for the user selection
                 Console.WriteLine("");
                 Console.Write("Please input the menupoint: ");
-                selection = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 0, 2);
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, 2);
 
                 // Show submenu details based on the selection
                 switch (selection)

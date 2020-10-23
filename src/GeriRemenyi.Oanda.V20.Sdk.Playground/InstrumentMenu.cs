@@ -25,7 +25,7 @@
                 // Wait for the user selection
                 Console.WriteLine("");
                 Console.Write("Please input the menupoint: ");
-                selection = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 0, 1);
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, 1);
 
                 // Show submenu details based on the selection
                 switch (selection)
@@ -56,7 +56,7 @@
             }
             Console.WriteLine("");
             Console.Write("Selected instrument: ");
-            var selectedInstrument = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1, Convert.ToUInt32(availableInstruments.Count));
+            var selectedInstrument = Utilities.TryParseIntegerValue(Console.ReadLine(), 1, Convert.ToInt32(availableInstruments.Count));
             Console.WriteLine("");
 
             // Let the user select the candle granularity
@@ -69,14 +69,14 @@
             }
             Console.WriteLine("");
             Console.Write("Selected granularity: ");
-            var selectedGranularity = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1, Convert.ToUInt32(availableGranularities.Count));
+            var selectedGranularity = Utilities.TryParseIntegerValue(Console.ReadLine(), 1, Convert.ToInt32(availableGranularities.Count));
             Console.WriteLine("");
 
             // Let the user input how many days to show
             Console.WriteLine("Please input how many days to show");
             Console.WriteLine("-----------------------------------");
             Console.Write("Days (max 5000 candlestick will be shown): ");
-            var selectedDays = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1);
+            var selectedDays = Utilities.TryParseIntegerValue(Console.ReadLine(), 1);
             Console.WriteLine("");
 
             // Load details for the instrument

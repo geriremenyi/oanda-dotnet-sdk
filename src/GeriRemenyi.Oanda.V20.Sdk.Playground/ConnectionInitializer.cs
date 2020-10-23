@@ -50,7 +50,7 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
             Console.Write("Please input the number of the desired server: ");
 
             // Let the user select
-            var selectedServer = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1, Convert.ToUInt32(availableServers.Count));
+            var selectedServer = Utilities.TryParseIntegerValue(Console.ReadLine(), 1, Convert.ToInt32(availableServers.Count));
             Console.WriteLine("");
             return availableServers.ElementAt(selectedServer - 1);
         }

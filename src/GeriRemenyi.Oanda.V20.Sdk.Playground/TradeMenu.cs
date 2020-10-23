@@ -28,7 +28,7 @@
                 // Wait for the user selection
                 Console.WriteLine("");
                 Console.Write("Please input the menupoint: ");
-                selection = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 0, 2);
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, 2);
 
                 // Show submenu details based on the selection
                 switch (selection)
@@ -84,21 +84,21 @@
             }
             Console.WriteLine("");
             Console.Write("Selected instrument: ");
-            var selectedInstrument = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1, Convert.ToUInt32(availableInstruments.Count));
+            var selectedInstrument = Utilities.TryParseIntegerValue(Console.ReadLine(), 1, Convert.ToInt32(availableInstruments.Count));
             Console.WriteLine("");
 
             // Let the user input how many units to trade
             Console.WriteLine("Please input how many units to trade");
             Console.WriteLine("-------------------------------------");
-            Console.Write("Number of units to trade: ");
-            var unitsToTrade = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1);
+            Console.Write("Number of units to trade (positive number long, negative number short): ");
+            var unitsToTrade = Utilities.TryParseIntegerValue(Console.ReadLine());
             Console.WriteLine("");
 
             // Let the user input how many units to trade
             Console.WriteLine("Lease input how far the trailing stop loss should be");
             Console.WriteLine("-----------------------------------------------------");
             Console.Write("Trailing stop loss distance: ");
-            var trailingStopLossDistance = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 1);
+            var trailingStopLossDistance = Utilities.TryParseIntegerValue(Console.ReadLine(), 1);
             Console.WriteLine("");
 
             var tradeOpenResponse = await connection.GetAccount(selectedAccountId).OpenTrade(availableInstruments.ElementAt(selectedInstrument - 1), unitsToTrade, trailingStopLossDistance);

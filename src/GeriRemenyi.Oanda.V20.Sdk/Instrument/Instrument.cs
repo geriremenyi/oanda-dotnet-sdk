@@ -23,7 +23,7 @@
             _dateTimeFormat = dateTimeFormat;
         }
 
-        public async Task<CandlesResponse> GetCandles(
+        public async Task<IEnumerable<Candlestick>> GetCandles(
             CandlestickGranularity granularity, 
             DateTimeOffset from, 
             DateTimeOffset to, 
@@ -48,22 +48,19 @@
                     );
                 }
 
-                return new CandlesResponse() 
-                { 
-                    Instrument = _instrumentName,
-                    Granularity = granularity,
-                    Candles = candleResponses.SelectMany(cr => cr.Candles).ToList()
-                };
+                return candleResponses.SelectMany(cr => cr.Candles);
             }
             else
             {
-                return await _instrumentApi.GetInstrumentCandlesAsync(
+                var candlesResponse = await _instrumentApi.GetInstrumentCandlesAsync(
                     instrument: _instrumentName,
                     granularity: granularity,
                     price: ResolvePricingComponents(pricingComponents),
                     from: from.ToOandaDateTime(_dateTimeFormat),
                     to: to.ToOandaDateTime(_dateTimeFormat)
                 );
+
+                return candlesResponse.Candles;
             }
         }
 
