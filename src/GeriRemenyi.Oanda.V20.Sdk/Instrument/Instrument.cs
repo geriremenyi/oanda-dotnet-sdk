@@ -25,14 +25,14 @@
 
         public async Task<IEnumerable<Candlestick>> GetCandles(
             CandlestickGranularity granularity, 
-            DateTimeOffset from, 
-            DateTimeOffset to, 
+            DateTime utcFrom,
+            DateTime utcTo, 
             IEnumerable<PricingComponent>? pricingComponents = null
         )
         {
-            if (granularity.AreMultipleQueriesRequired(from, to))
+            if (granularity.AreMultipleQueriesRequired(utcFrom, utcTo))
             {
-                var candlesRange = granularity.ExplodeToMultipleCandleRanges(from, to);
+                var candlesRange = granularity.ExplodeToMultipleCandleRanges(utcFrom, utcTo);
                 var candleResponses = new List<CandlesResponse>();
 
                 foreach (var candleFromToRange in candlesRange)
@@ -42,8 +42,8 @@
                             instrument: _instrumentName,
                             granularity: granularity,
                             price: ResolvePricingComponents(pricingComponents),
-                            from: candleFromToRange.From.ToOandaDateTime(_dateTimeFormat),
-                            to: candleFromToRange.To.ToOandaDateTime(_dateTimeFormat)
+                            from: candleFromToRange.UtcFrom.ToOandaDateTime(_dateTimeFormat),
+                            to: candleFromToRange.UtcTo.ToOandaDateTime(_dateTimeFormat)
                         )
                     );
                 }
@@ -56,8 +56,8 @@
                     instrument: _instrumentName,
                     granularity: granularity,
                     price: ResolvePricingComponents(pricingComponents),
-                    from: from.ToOandaDateTime(_dateTimeFormat),
-                    to: to.ToOandaDateTime(_dateTimeFormat)
+                    from: utcFrom.ToOandaDateTime(_dateTimeFormat),
+                    to: utcTo.ToOandaDateTime(_dateTimeFormat)
                 );
 
                 return candlesResponse.Candles;

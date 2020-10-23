@@ -9,29 +9,29 @@ namespace GeriRemenyi.Oanda.V20.Client.Instrument.Model
     {
         private const int OANDA_MAX_CANDLES = 5000;
 
-        public static bool AreMultipleQueriesRequired(this CandlestickGranularity granularity, DateTimeOffset from, DateTimeOffset to)
+        public static bool AreMultipleQueriesRequired(this CandlestickGranularity granularity, DateTime utcFrom, DateTime utcTo)
         {
-            return (granularity.GetNumberOfCandlesForTimeRange(from, to) > OANDA_MAX_CANDLES);
+            return (granularity.GetNumberOfCandlesForTimeRange(utcFrom, utcTo) > OANDA_MAX_CANDLES);
         }
 
-        public static IEnumerable<CandlesRange> ExplodeToMultipleCandleRanges(this CandlestickGranularity granularity, DateTimeOffset from, DateTimeOffset to)
+        public static IEnumerable<CandlesRange> ExplodeToMultipleCandleRanges(this CandlestickGranularity granularity, DateTime utcFrom, DateTime utcTo)
         {
-            var numberOfCandles = granularity.GetNumberOfCandlesForTimeRange(from, to);
+            var numberOfCandles = granularity.GetNumberOfCandlesForTimeRange(utcFrom, utcTo);
             var numberOfQueries = Math.Ceiling(numberOfCandles / OANDA_MAX_CANDLES);
             var candleRanges = new List<CandlesRange>();
 
             for (var i = 0; i <= (numberOfQueries - 1); i++)
             {
                 candleRanges.Add(new CandlesRange() {
-                    From = from.AddSeconds(i * OANDA_MAX_CANDLES * granularity.GetInSeconds()),
-                    To = (i == (numberOfQueries - 1)) ? to  : from.AddSeconds(((i + 1) * OANDA_MAX_CANDLES * granularity.GetInSeconds()) - 1)
+                    UtcFrom = utcFrom.AddSeconds(i * OANDA_MAX_CANDLES * granularity.GetInSeconds()),
+                    UtcTo = (i == (numberOfQueries - 1)) ? utcTo  : utcFrom.AddSeconds(((i + 1) * OANDA_MAX_CANDLES * granularity.GetInSeconds()) - 1)
                 });
             }
 
             return candleRanges;
         }
 
-        public static double GetNumberOfCandlesForTimeRange(this CandlestickGranularity granularity, DateTimeOffset from, DateTimeOffset to)
+        public static double GetNumberOfCandlesForTimeRange(this CandlestickGranularity granularity, DateTime from, DateTime to)
         {
             if (from > to)
             {

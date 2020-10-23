@@ -3,6 +3,7 @@
     using GeriRemenyi.Oanda.V20.Client.Model;
     using Newtonsoft.Json.Linq;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -82,11 +83,17 @@
             // Load details for the instrument
             var candles = await connection
                 .GetInstrument(availableInstruments.ElementAt(selectedInstrument - 1))
-                .GetCandles(availableGranularities.ElementAt(selectedGranularity - 1), DateTimeOffset.Now.AddDays(selectedDays * -2), DateTimeOffset.Now.AddDays(-1));
+                .GetCandles(availableGranularities.ElementAt(selectedGranularity - 1), DateTime.UtcNow.AddDays(selectedDays * -1), DateTime.UtcNow);
             Console.WriteLine("Candles");
             Console.WriteLine("---------------------------------");
             Console.WriteLine("");
-            Console.WriteLine(JToken.Parse(candles.ToJson()));
+            Console.WriteLine(JToken.Parse(
+                new CandlesResponse(
+                    availableInstruments.ElementAt(selectedInstrument - 1), 
+                    availableGranularities.ElementAt(selectedGranularity - 1), 
+                    candles as List<Candlestick>).ToJson()
+                )
+            );
             Console.WriteLine("");
 
             // Wait for a keypress to go back to menu selector
