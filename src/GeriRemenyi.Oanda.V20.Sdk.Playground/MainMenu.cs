@@ -22,7 +22,7 @@
                 Console.WriteLine("");
                 Console.Write("Please input the menupoint: ");
 
-                selection = Utilities.TryToParseNumericAnswer(Console.ReadLine(), 0, 2);
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, 2);
 
                 switch (selection)
                 {

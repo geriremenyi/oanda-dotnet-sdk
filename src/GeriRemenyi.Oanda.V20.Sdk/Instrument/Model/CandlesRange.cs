@@ -4,8 +4,8 @@
 
     public class CandlesRange
     {
-        public DateTimeOffset From { get; set; }
+        public DateTime UtcFrom { get; set; }
 
-        public DateTimeOffset To { get; set; }
+        public DateTime UtcTo { get; set; }
     }
 }
