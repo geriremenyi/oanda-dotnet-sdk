@@ -23,21 +23,45 @@
             _dateTimeFormat = dateTimeFormat;
         }
 
-        public async Task<CandlesResponse> GetCandles(
+        public async Task<IEnumerable<Candlestick>> GetCandles(
             CandlestickGranularity granularity, 
-            DateTime from, 
-            DateTime to, 
+            DateTime utcFrom,
+            DateTime utcTo, 
             IEnumerable<PricingComponent>? pricingComponents = null
         )
         {
-            // TODO replace granularity to enum when fix is in
-            return await _instrumentApi.GetInstrumentCandlesAsync(
-                instrument: _instrumentName,
-                granularity: granularity,
-                price: ResolvePricingComponents(pricingComponents),
-                from: from.ToOandaDateTime(_dateTimeFormat),
-                to: to.ToOandaDateTime(_dateTimeFormat)
-            );
+            if (granularity.AreMultipleQueriesRequired(utcFrom, utcTo))
+            {
+                var candlesRange = granularity.ExplodeToMultipleCandleRanges(utcFrom, utcTo);
+                var candleResponses = new List<CandlesResponse>();
+
+                foreach (var candleFromToRange in candlesRange)
+                {
+                    candleResponses.Add(
+                        await _instrumentApi.GetInstrumentCandlesAsync(
+                            instrument: _instrumentName,
+                            granularity: granularity,
+                            price: ResolvePricingComponents(pricingComponents),
+                            from: candleFromToRange.UtcFrom.ToOandaDateTime(_dateTimeFormat),
+                            to: candleFromToRange.UtcTo.ToOandaDateTime(_dateTimeFormat)
+                        )
+                    );
+                }
+
+                return candleResponses.SelectMany(cr => cr.Candles);
+            }
+            else
+            {
+                var candlesResponse = await _instrumentApi.GetInstrumentCandlesAsync(
+                    instrument: _instrumentName,
+                    granularity: granularity,
+                    price: ResolvePricingComponents(pricingComponents),
+                    from: utcFrom.ToOandaDateTime(_dateTimeFormat),
+                    to: utcTo.ToOandaDateTime(_dateTimeFormat)
+                );
+
+                return candlesResponse.Candles;
+            }
         }
 
         private string ResolvePricingComponents(IEnumerable<PricingComponent>? pricingComponents)

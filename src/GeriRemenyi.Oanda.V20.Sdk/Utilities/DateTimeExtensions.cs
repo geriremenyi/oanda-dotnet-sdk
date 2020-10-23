@@ -7,17 +7,17 @@
     public static class DateTimeExtensions
     {
 
-        public static string ToOandaDateTime(this DateTime dateTime, DateTimeFormat dateTimeFormat) 
+        public static string ToOandaDateTime(this DateTime utcDateTime, DateTimeFormat dateTimeFormat) 
         {
             switch (dateTimeFormat)
             {
                 case DateTimeFormat.UNIX:
-                    var beginningOfTime = new DateTime(1970, 1, 1, 0, 0, 0, dateTime.Kind);
-                    var unixTimestamp = Convert.ToInt64((dateTime - beginningOfTime).TotalSeconds);
+                    var beginningOfTime = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
+                    var unixTimestamp = Convert.ToInt64((utcDateTime - beginningOfTime).TotalSeconds);
                     return unixTimestamp.ToString();
                 default:
                 case DateTimeFormat.RFC3339:
-                    return XmlConvert.ToString(dateTime, XmlDateTimeSerializationMode.RoundtripKind);
+                    return XmlConvert.ToString(utcDateTime, XmlDateTimeSerializationMode.RoundtripKind);
             }
         }
 

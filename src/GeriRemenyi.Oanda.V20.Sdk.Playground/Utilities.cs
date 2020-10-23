@@ -1,31 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GeriRemenyi.Oanda.V20.Sdk.Playground
+﻿namespace GeriRemenyi.Oanda.V20.Sdk.Playground
 {
+    using System;
+
     public static class Utilities
     {
-        public static int TryToParseNumericAnswer(string answer, uint minValue, uint? maxValue = null)
+        public static int TryParseIntegerValue(string answer, int? minValue = null, int? maxValue = null)
         {
-            var numericAnswer = -1;
+            var valueCorrect = false;
+            int numericAnswer = default;
 
-            while (numericAnswer < 0)
+            while (!valueCorrect)
             {
                 try
                 {
                     numericAnswer = int.Parse(answer);
-                    if (numericAnswer < minValue || (maxValue != null && numericAnswer > maxValue))
+                    if ((minValue != null && numericAnswer < minValue) || (maxValue != null && numericAnswer > maxValue))
                     {
                         throw new ArgumentException("The answer is out of range");
+                    }
+                    else 
+                    {
+                        valueCorrect = true;
                     }
                 }
                 catch
                 {
-                    Console.Write("Invalid selection. Please try again: ");
+                    valueCorrect = false;
+                    Console.Write("Invalid input. Please try again: ");
                     answer = Console.ReadLine();
-                    numericAnswer = -1;
+                }
+            }
+
+            return numericAnswer;
+        }
+
+        public static double TryParseDoubleValue(string answer, double? minValue = null, double? maxValue = null)
+        {
+            var valueCorrect = false;
+            double numericAnswer = default;
+
+            while (!valueCorrect)
+            {
+                try
+                {
+                    numericAnswer = double.Parse(answer);
+                    if ((minValue != null && numericAnswer < minValue) || (maxValue != null && numericAnswer > maxValue))
+                    {
+                        throw new ArgumentException("The answer is out of range");
+                    }
+                    else 
+                    {
+                        valueCorrect = true;
+                    }
+                }
+                catch
+                {
+                    valueCorrect = false;
+                    Console.Write("Invalid input. Please try again: ");
+                    answer = Console.ReadLine();
                 }
             }
 
