@@ -8,9 +8,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Setup .NET core 3.1
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
-      - name: Run build
+
+      - name: Run SDK build
         run: dotnet build ./src/GeriRemenyi.Oanda.V20.Sdk/GeriRemenyi.Oanda.V20.Sdk.csproj --configuration Release
+
+      - name: Run Playground build
+        run: dotnet build ./src/GeriRemenyi.Oanda.V20.Sdk.Playground/GeriRemenyi.Oanda.V20.Sdk.Playground.csproj --configuration Release
