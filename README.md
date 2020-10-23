@@ -10,13 +10,13 @@ The easiest way to explore what the SDK offers if you open the [Playground proje
 
 ### Install nuget package
 ```bash
-dotnet add package GeriRemenyi.Oanda.V20.Client --version 0.0.2
+dotnet add package GeriRemenyi.Oanda.V20.Client
 ```
 
 ### Initialize a connection
 ```cs
-var server = OandaServer.FxPractice // OandaServer.FxTrade
-var token "<your_api_bearer_token>"
+var server = OandaServer.FxPractice; // OandaServer.FxTrade
+var token "<your_api_bearer_token>";
 var connection = new ApiConnection(server, token);
 ```
 
@@ -27,7 +27,24 @@ await connection.GetAccounts();
 
 ### Get account details
 ```cs
-await connection.GetAccount("<your_sub_account_id>").GetDetails()
+await connection.GetAccount("<your_sub_account_id>").GetDetails();
+```
+
+### Get open trades
+```cs
+await connection
+    .GetAccount("<your_sub_account_id>")
+    .GetOpenTrades();
+```
+
+### GOpen a new trade
+```cs
+var instrument = InstrumentNames.EUR_USD;
+var units = 100000; // This is one lot, positive numbers open long, negative numbers open short position
+var trailingStopLossDistance = 0.01 // 100 pips away there will be a trailing stop loss
+await connection
+    .GetAccount("<your_sub_account_id>")
+    .OpenTrade(instrument, units, trailingStopLossDistance);
 ```
 
 ### Get candlesticks for an instruments
@@ -43,7 +60,7 @@ Pull requests and any kind of contribution are welcome. For major changes, pleas
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## Liability
+## :warning: Liability
 CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage.
 Around 70% of retail investor accounts lose money when trading CFDs with OANDA.
 You should consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money.
