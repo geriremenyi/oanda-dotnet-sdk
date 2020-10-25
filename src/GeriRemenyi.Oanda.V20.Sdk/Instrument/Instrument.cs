@@ -64,7 +64,6 @@
             }
         }
 
-<<<<<<< HEAD
         public async Task<IEnumerable<Candlestick>> GetLastCandles(
             CandlestickGranularity granularity,
             int count,
@@ -86,8 +85,6 @@
             return candlesResponse.Candles;
         }
 
-=======
->>>>>>> master
         private string ResolvePricingComponents(IEnumerable<PricingComponent>? pricingComponents)
         {
             if (pricingComponents == null)
