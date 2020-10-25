@@ -64,6 +64,27 @@
             }
         }
 
+        public async Task<IEnumerable<Candlestick>> GetLastCandles(
+            CandlestickGranularity granularity,
+            int count,
+            IEnumerable<PricingComponent>? pricingComponents = null
+        )
+        {
+            if (count > 5000)
+            {
+                throw new Exception("Maximum 5000 candles are allowed");
+            }
+
+            var candlesResponse = await _instrumentApi.GetInstrumentCandlesAsync(
+                instrument: _instrumentName,
+                granularity: granularity,
+                count: count,
+                price: ResolvePricingComponents(pricingComponents)
+            );
+
+            return candlesResponse.Candles;
+        }
+
         private string ResolvePricingComponents(IEnumerable<PricingComponent>? pricingComponents)
         {
             if (pricingComponents == null)
