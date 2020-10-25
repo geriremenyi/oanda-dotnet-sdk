@@ -7,10 +7,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-<<<<<<< HEAD
-    using System.Reflection;
-=======
->>>>>>> master
     using System.Threading.Tasks;
 
     public class Instrument
