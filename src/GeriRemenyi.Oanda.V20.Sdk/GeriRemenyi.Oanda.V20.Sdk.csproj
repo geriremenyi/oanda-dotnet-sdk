@@ -16,7 +16,11 @@
     <Description>A client SDK for OANDA's REST API (V20)</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>GeriRemenyi.Oanda.V20.Client</RootNamespace>
+<<<<<<< HEAD
     <Version>0.0.5</Version>
+=======
+    <Version>0.0.4</Version>
+>>>>>>> master
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\GeriRemenyi.Oanda.V20.Sdk.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/geriremenyi/oanda-dotnet-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

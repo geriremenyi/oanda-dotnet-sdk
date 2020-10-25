@@ -7,7 +7,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+<<<<<<< HEAD
     using System.Reflection;
+=======
+>>>>>>> master
     using System.Threading.Tasks;
 
     public class Instrument
@@ -65,6 +68,7 @@
             }
         }
 
+<<<<<<< HEAD
         public async Task<IEnumerable<Candlestick>> GetLastCandles(
             CandlestickGranularity granularity,
             int count,
@@ -86,6 +90,8 @@
             return candlesResponse.Candles;
         }
 
+=======
+>>>>>>> master
         private string ResolvePricingComponents(IEnumerable<PricingComponent>? pricingComponents)
         {
             if (pricingComponents == null)
