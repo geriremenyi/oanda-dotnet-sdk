@@ -1,16 +1,16 @@
 ﻿namespace GeriRemenyi.Oanda.V20.Sdk.Playground
 {
     using GeriRemenyi.Oanda.V20.Client.Model;
+    using GeriRemenyi.Oanda.V20.Sdk.Trade;
     using Newtonsoft.Json.Linq;
     using System;
     using System.Linq;
-    using System.Runtime.InteropServices.ComTypes;
     using System.Threading.Tasks;
 
     public static class TradeMenu
     {
 
-        public static async Task InitializeTradeMenu(ApiConnection connection, string selectedAccountId)
+        public static async Task InitializeTradeMenu(IOandaApiConnection connection, string selectedAccountId)
         {
             var selection = -1;
 
@@ -43,7 +43,7 @@
             }
         }
 
-        private static async Task ShowOpenTrade(ApiConnection connection, string selectedAccountId)
+        private static async Task ShowOpenTrade(IOandaApiConnection connection, string selectedAccountId)
         {
             // Print out menu header
             Console.Clear();
@@ -53,7 +53,7 @@
             Console.WriteLine("");
 
             // Collect and print out open trades for the account
-            var trades = await connection.GetAccount(selectedAccountId).GetOpenTrades();
+            var trades = await connection.GetAccount(selectedAccountId).Trades.GetOpenTradesAsync();
             foreach (var trade in trades)
             {
                 Console.WriteLine(JToken.Parse(trade.ToJson()));
@@ -65,7 +65,7 @@
             Console.ReadKey();
         }
 
-        private static async Task ShowOpenNewTrade(ApiConnection connection, string selectedAccountId)
+        private static async Task ShowOpenNewTrade(IOandaApiConnection connection, string selectedAccountId)
         {
             // Print out menu header
             Console.Clear();
@@ -90,18 +90,36 @@
             // Let the user input how many units to trade
             Console.WriteLine("Please input how many units to trade");
             Console.WriteLine("-------------------------------------");
-            Console.Write("Number of units to trade (positive number long, negative number short): ");
+            Console.Write("Number of units to trade: ");
             var unitsToTrade = Utilities.TryParseIntegerValue(Console.ReadLine());
+            Console.WriteLine("");
+
+            // Let the user select from the trade directions
+            Console.WriteLine("Please select the direction");
+            Console.WriteLine("----------------------------");
+            var availableDirections = Enum.GetValues(typeof(TradeDirection)).Cast<TradeDirection>().ToList();
+            foreach (var direction in availableDirections.Select((name, index) => new { index = index + 1, name }))
+            {
+                Console.WriteLine($"{direction.index}) {direction.name}");
+            }
+            Console.WriteLine("");
+            Console.Write("Selected direction: ");
+            var selectedDirection = Utilities.TryParseIntegerValue(Console.ReadLine(), 1, Convert.ToInt32(availableDirections.Count));
             Console.WriteLine("");
 
             // Let the user input how many units to trade
             Console.WriteLine("Lease input how far the trailing stop loss should be");
             Console.WriteLine("-----------------------------------------------------");
-            Console.Write("Trailing stop loss distance: ");
-            var trailingStopLossDistance = Utilities.TryParseIntegerValue(Console.ReadLine(), 1);
+            Console.Write("Trailing stop loss in PIPs: ");
+            var trailingStopLossInPips = Utilities.TryParseIntegerValue(Console.ReadLine(), 1);
             Console.WriteLine("");
 
-            var tradeOpenResponse = await connection.GetAccount(selectedAccountId).OpenTrade(availableInstruments.ElementAt(selectedInstrument - 1), unitsToTrade, trailingStopLossDistance);
+            var tradeOpenResponse = await connection.GetAccount(selectedAccountId).Trades.OpenTradeAsync(
+                availableInstruments.ElementAt(selectedInstrument - 1), 
+                availableDirections.ElementAt(selectedDirection - 1), 
+                unitsToTrade, 
+                trailingStopLossInPips
+            );
         }
     }
 }

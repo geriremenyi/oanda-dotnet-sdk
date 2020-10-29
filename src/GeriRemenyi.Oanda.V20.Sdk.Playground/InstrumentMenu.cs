@@ -9,7 +9,7 @@
 
     public static class InstrumentMenu
     {
-        public static async Task InitializeInstrumentMenu(ApiConnection connection)
+        public static async Task InitializeInstrumentMenu(IOandaApiConnection connection)
         {
             var selection = -1;
 
@@ -38,7 +38,7 @@
             }
         }
 
-        private static async Task ShowInstrumentCandles(ApiConnection connection)
+        private static async Task ShowInstrumentCandles(IOandaApiConnection connection)
         {
             // Print out menu header
             Console.Clear();
@@ -83,7 +83,7 @@
             // Load details for the instrument
             var candles = await connection
                 .GetInstrument(availableInstruments.ElementAt(selectedInstrument - 1))
-                .GetCandles(availableGranularities.ElementAt(selectedGranularity - 1), DateTime.UtcNow.AddDays(selectedDays * -1), DateTime.UtcNow);
+                .GetCandlesByTimeAsync(availableGranularities.ElementAt(selectedGranularity - 1), DateTime.UtcNow.AddDays(selectedDays * -1), DateTime.UtcNow);
             Console.WriteLine("Candles");
             Console.WriteLine("---------------------------------");
             Console.WriteLine("");

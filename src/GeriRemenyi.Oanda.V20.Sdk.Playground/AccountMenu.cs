@@ -7,7 +7,7 @@
 
     public static class AccountMenu
     {
-        public static async Task InitializeAccountMenu(ApiConnection connection)
+        public static async Task InitializeAccountMenu(IOandaApiConnection connection)
         {
             var selection = -1;
 
@@ -31,7 +31,7 @@
                 switch (selection)
                 {
                     case 1:
-                        await ShowAllAccounts(connection);
+                        ShowAllAccounts(connection);
                         break;
                     case 2:
                         await ShowOneAccountSelector(connection);
@@ -40,7 +40,7 @@
             }
         }
 
-        private static async Task ShowAllAccounts(ApiConnection connection)
+        private static void ShowAllAccounts(IOandaApiConnection connection)
         {
             // Print out menu header
             Console.Clear();
@@ -50,19 +50,19 @@
             Console.WriteLine("");
 
             // Collect and print out accounts
-            var accounts = await connection.GetAccounts();
-            accounts.ForEach(a =>
+            var accounts = connection.GetAccounts();
+            foreach (var account in accounts)
             {
-                Console.WriteLine(JToken.Parse(a.ToJson()));
+                Console.WriteLine(JToken.Parse(account.ToJson()));
                 Console.WriteLine("");
-            });
+            }
 
             // Wait for a keypress to go back to menu selector
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
 
-        private static async Task ShowOneAccountSelector(ApiConnection connection)
+        private static async Task ShowOneAccountSelector(IOandaApiConnection connection)
         {
             var selection = -1;
 
@@ -75,7 +75,7 @@
                 Console.WriteLine("====================");
 
                 // Print out accounts as menu points
-                var accounts = await connection.GetAccounts();
+                var accounts = connection.GetAccounts();
                 foreach (var account in accounts.Select((content, index) => new { index = index + 1, content }))
                 {
                     Console.WriteLine($"{account.index}) {account.content.Id}");
@@ -87,7 +87,7 @@
                 // Wait for user selection
                 Console.WriteLine("");
                 Console.Write("Please select an account: ");
-                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, Convert.ToInt32(accounts.Count));
+                selection = Utilities.TryParseIntegerValue(Console.ReadLine(), 0, Convert.ToInt32(accounts.Count()));
 
                 // Handle selection
                 if (selection != 0) 
@@ -97,7 +97,7 @@
             }        
         }
 
-        private static async Task ShowOneAccountMenu(ApiConnection connection, string selectedAccountId)
+        private static async Task ShowOneAccountMenu(IOandaApiConnection connection, string selectedAccountId)
         {
             var selection = -1;
 
@@ -130,7 +130,7 @@
             }
         }
 
-        private static async Task ShowOneAccountDetails(ApiConnection connection, string selectedAccountId)
+        private static async Task ShowOneAccountDetails(IOandaApiConnection connection, string selectedAccountId)
         {
             Console.Clear();
             Console.WriteLine("==========================================");
@@ -139,7 +139,7 @@
             Console.WriteLine("");
 
             // Load details for the selected accounts
-            var accountDetails = await connection.GetAccount(selectedAccountId).GetDetails();
+            var accountDetails = await connection.GetAccount(selectedAccountId).GetDetailsAsync();
             Console.WriteLine(JToken.Parse(accountDetails.ToJson()));
             Console.WriteLine("");
 
