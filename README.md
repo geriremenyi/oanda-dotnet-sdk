@@ -15,43 +15,69 @@ dotnet add package GeriRemenyi.Oanda.V20.Client
 
 ### Initialize a connection
 ```cs
-var server = OandaServer.FxPractice; // OandaServer.FxTrade
+var server = OandaConnectionType.FxPractice;
 var token "<your_api_bearer_token>";
-var connection = new ApiConnection(server, token);
+var connection = new OandaApiConnectionFactory().CreateConnection(server, token);
 ```
 
 ### Get accounts
 ```cs
-await connection.GetAccounts();
+connection.GetAccounts();
 ```
 
 ### Get account details
 ```cs
-await connection.GetAccount("<your_sub_account_id>").GetDetails();
+connection.GetAccount("<your_sub_account_id>").GetDetails();
+// OR
+await connection.GetAccount("<your_sub_account_id>").GetDetailsAsync();
 ```
 
 ### Get open trades
 ```cs
-await connection
+connection
     .GetAccount("<your_sub_account_id>")
     .GetOpenTrades();
-```
-
-### GOpen a new trade
-```cs
-var instrument = InstrumentNames.EUR_USD;
-var units = 100000; // This is one lot, positive numbers open long, negative numbers open short position
-var trailingStopLossDistance = 0.01 // 100 pips away there will be a trailing stop loss
+// OR
 await connection
     .GetAccount("<your_sub_account_id>")
-    .OpenTrade(instrument, units, trailingStopLossDistance);
+    .GetOpenTradesAsync();
 ```
 
-### Get candlesticks for an instruments
+### Open a new trade
 ```cs
+var instrument = InstrumentNames.EUR_USD;
+var direction = TradeDirection.Long;
+var units = 100000;
+var trailingStopLossInPips = 100;
+connection
+    .GetAccount("<your_sub_account_id>")
+    .OpenTrade(instrument, direction, units, trailingStopLossDistance);
+// OR
+await connection
+    .GetAccount("<your_sub_account_id>")
+    .OpenTradeAsync(instrument, direction, units, trailingStopLossDistance);
+```
+
+### Get candlesticks for an instruments between the given timefram
+```cs
+connection
+    .GetInstrument(InstrumentName.EUR_USD)
+    .GetCandlesByTime(CandlestickGranularity.H1, DateTime.Now.AddDays(-5), DateTime.Now);
+// OR
 await connection
     .GetInstrument(InstrumentName.EUR_USD)
-    .GetCandles(CandlestickGranularity.H1, DateTime.Now.AddDays(-5), DateTime.Now);
+    .GetCandlesByTimeAsync(CandlestickGranularity.H1, DateTime.Now.AddDays(-5), DateTime.Now);
+```
+
+### Get last N candlesticks for an instruments
+```cs
+connection
+    .GetInstrument(InstrumentName.EUR_USD)
+    .GetLastNCandles(CandlestickGranularity.H1, 100);
+// OR
+await connection
+    .GetInstrument(InstrumentName.EUR_USD)
+    .GetLastNCandlesAsync(CandlestickGranularity.H1, 100);
 ```
 
 ## Contributing

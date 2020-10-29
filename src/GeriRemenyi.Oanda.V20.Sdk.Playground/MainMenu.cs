@@ -5,7 +5,7 @@
 
     public static class MainMenu
     {
-        public static async Task InitializeMainMenu(ApiConnection connection)
+        public static async Task InitializeMainMenu(IOandaApiConnection connection)
         {
             var selection = -1;
 

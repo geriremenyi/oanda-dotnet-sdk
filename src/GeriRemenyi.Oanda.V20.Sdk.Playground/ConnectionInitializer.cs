@@ -2,16 +2,15 @@
 namespace GeriRemenyi.Oanda.V20.Sdk.Playground
 {
     using GeriRemenyi.Oanda.V20.Client.Client;
-    using GeriRemenyi.Oanda.V20.Sdk.Utilities;
+    using GeriRemenyi.Oanda.V20.Sdk.Common.Types;
     using System;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public static class ConnectionInitializer
     {
-        public static async Task<ApiConnection> InitializeApiConnection()
+        public static IOandaApiConnection InitializeApiConnection()
         {
-            ApiConnection connection = null;
+            IOandaApiConnection connection = null;
 
             while (connection == null)
             {
@@ -23,8 +22,7 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
                     Console.WriteLine("");
                     var server = ServerSelector();
                     var token = InputToken();
-                    connection = new ApiConnection(server, token);
-                    await connection.Test();
+                    connection = new OandaApiConnectionFactory().CreateConnection(server, token);
                 }
                 catch (ApiException ae)
                 {
@@ -36,12 +34,12 @@ namespace GeriRemenyi.Oanda.V20.Sdk.Playground
             return connection;
         }
 
-        public static OandaServer ServerSelector()
+        public static OandaConnectionType ServerSelector()
         {
             // Print out available servers
             Console.WriteLine("Please select the OANDA server you want to connect to");
             Console.WriteLine("------------------------------------------------------");
-            var availableServers = Enum.GetValues(typeof(OandaServer)).Cast<OandaServer>().ToList();
+            var availableServers = Enum.GetValues(typeof(OandaConnectionType)).Cast<OandaConnectionType>().ToList();
             foreach (var server in availableServers.Select((name, index) => new { index = index + 1, name }))
             {
                 Console.WriteLine($"{server.index}) {server.name}");

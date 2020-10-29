@@ -2,7 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>GeriRemenyi.Oanda.V20.Sdk.Playground</AssemblyName>
+    <PackageId>GeriRemenyi.Oanda.V20.Sdk.Playground</PackageId>
+    <RootNamespace>GeriRemenyi.Oanda.V20.Sdk.Playground</RootNamespace>
+    <Authors>geriremenyi</Authors>
+    <Company>geriremenyi.com</Company>
+    <Copyright>No Copyright</Copyright>
+    <Version>0.0.6</Version>
   </PropertyGroup>
 
   <ItemGroup>
