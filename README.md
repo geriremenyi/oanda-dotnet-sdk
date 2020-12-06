@@ -41,6 +41,12 @@ To run the playground:
 dotnet run --project src/GeriRemenyi.Oanda.V20.Sdk.Playground/GeriRemenyi.Oanda.V20.Sdk.Playground.csproj
 ```
 
+## Nuget package
+
+There is a [continuous deployment](.github/workflows/continuous_deployment.yaml) job setup which [runs on every merge to master](https://github.com/geriremenyi/oanda-dotnet-sdk/actions?query=workflow%3A%22Continuous+Deployment%22). This builds the client code and then pushes it to [nuget.org](https://www.nuget.org/).
+
+Nuget package: https://www.nuget.org/packages/GeriRemenyi.Oanda.V20.Sdk/
+
 ## How to use it
 
 ### Install nuget package
