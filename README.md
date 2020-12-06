@@ -3,8 +3,43 @@ A fully typed .NET SDK for [OANDA's REST V20 API](https://developer.oanda.com/re
 
 Based on your use case, you might consider using this simplified wrapper or the generated client library itself. You can also request a specific client generation under the openapi definition repo.
 
-## Playground
+## Getting started
+
+### Prerequisites
+
+- [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download) to build, run etc.
+- [Visual Studio](https://visualstudio.microsoft.com) (optional) as the IDE.
+
+### Local setup
+
+1. Clone this repo
+```bash
+# HTTPS
+https://github.com/geriremenyi/oanda-dotnet-sdk.git
+# SSH
+git@github.com:geriremenyi/oanda-dotnet-sdk.git
+```
+
+2. Navigate to the root of the project and restore nuget packages
+```bash
+dotnet restore src/GeriRemenyi.Oanda.V20.Sdk.sln
+```
+
+### Build
+
+To build the SDK:
+```bash
+dotnet build src/GeriRemenyi.Oanda.V20.Sdk/GeriRemenyi.Oanda.V20.Sdk.csproj
+```
+
+### Playground
+
 The easiest way to explore what the SDK offers if you open the [Playground project](https://github.com/geriremenyi/oanda-dotnet-sdk/tree/develop/src/GeriRemenyi.Oanda.V20.Sdk.Playground), start it and play around. You can try the SDK using the console app and you can also see some code examples there.
+
+To run the playground:
+```bash
+dotnet run --project src/GeriRemenyi.Oanda.V20.Sdk.Playground/GeriRemenyi.Oanda.V20.Sdk.Playground.csproj
+```
 
 ## How to use it
 
